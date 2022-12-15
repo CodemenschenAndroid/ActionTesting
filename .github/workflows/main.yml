@@ -1,0 +1,15 @@
+name: Action Secret Value Testing
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    environment:
+      name: production_environment
+    steps:
+      - name: Checking Credentials
+        env:
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          CREDENTIAL_FILE_CONTENT: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+        run: |
+          echo ${#FIREBASE_APP_ID}
+          echo ${#CREDENTIAL_FILE_CONTENT}
